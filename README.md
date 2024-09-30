@@ -4,3 +4,6 @@
 
 If installing manually:
 Clone this repo into custom_nodes folder.
+
+![预览image](https://github.com/kungful/ComfyUI_hua_boy/blob/a58958bcd59ec3c44130a8f72ea061b08d6a555a/Sample_preview/image.png)
+![预览model](https://github.com/kungful/ComfyUI_hua_boy/blob/a58958bcd59ec3c44130a8f72ea061b08d6a555a/Sample_preview/model.png)
