@@ -5,8 +5,8 @@ from .hua_word_image import Huaword
 from .hua_word_models import Modelhua
 
 NODE_CLASS_MAPPINGS = {
-    "小字体说明：我是comfyui_hua_boy": Huaword,
-    "小字体说明：我是comfyui_hua_boy的model": Modelhua
+    "ComfyUI_hua_boy": Huaword,
+    "ComfyUI_hua_boy": Modelhua
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
