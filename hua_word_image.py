@@ -41,5 +41,5 @@ NODE_CLASS_MAPPINGS = {
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "小字体说明：我是comfyui_hua_boy": "布尔图片Boolean_image"
+    "ComfyUI_hua_boy": "布尔图片Boolean_image"
 }
