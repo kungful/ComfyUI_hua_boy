@@ -37,7 +37,7 @@ class Huaword:
         return (output_images,)
 
 NODE_CLASS_MAPPINGS = {
-    "小字体说明：我是comfyui_hua_boy": Huaword
+    "ComfyUI_hua_boy": Huaword
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
