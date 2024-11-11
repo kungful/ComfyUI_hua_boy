@@ -6,7 +6,7 @@ Select pictures and models by judging strings, and use the string judgment deduc
 pip install -r requirements.txt
 If installing manually:
 Clone this repo into custom_nodes folder.
-
+计划要实现的功能：通过检索数字键自动开启gradio前端图像输入框；模型选择；分辨率选择；种子；更美观的界面更健壮的代码  后会有期
 ![预览image](https://github.com/kungful/ComfyUI_hua_boy/blob/c4176cc896378e4745925c1d528cb910f6f6fa11/Sample_preview/c1e59d869b7f79c33f686b94c1db368.png)
 ![预览image](https://github.com/kungful/ComfyUI_hua_boy/blob/c4176cc896378e4745925c1d528cb910f6f6fa11/Sample_preview/484b25201870c5e8105a6ee08e6370d.png)
 ![预览image](https://github.com/kungful/ComfyUI_hua_boy/blob/c4176cc896378e4745925c1d528cb910f6f6fa11/Sample_preview/6b8564af2dbb2b75185f0bcc7cf5cd5.png)
