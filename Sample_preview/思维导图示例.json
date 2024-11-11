@@ -1,0 +1,2287 @@
+{
+  "last_node_id": 59,
+  "last_link_id": 88,
+  "nodes": [
+    {
+      "id": 27,
+      "type": "brucelee",
+      "pos": {
+        "0": 615,
+        "1": 780
+      },
+      "size": {
+        "0": 331.52545166015625,
+        "1": 504.05718994140625
+      },
+      "flags": {},
+      "order": 24,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 34,
+          "label": "images"
+        },
+        {
+          "name": "image",
+          "type": "COMBO",
+          "link": null,
+          "widget": {
+            "name": "image"
+          },
+          "label": "image"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            30,
+            31
+          ],
+          "shape": 3,
+          "label": "IMAGE",
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null,
+          "shape": 3,
+          "label": "MASK"
+        },
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": null,
+          "shape": 3,
+          "label": "CONDITIONING"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "brucelee"
+      },
+      "widgets_values": [
+        "jie.wav",
+        " import json\n\n# 假设这是你要发送的提示工作流\nprompt_workflow = \"这是一个提示工作流的内容\"\n\n# 创建字典\np = {\"prompt\": prompt_workflow}\n\n# 将字典转换为 JSON 字符串\ndata = json.dumps(p).encode('utf-8')\n\nprint(data)",
+        "image",
+        true
+      ]
+    },
+    {
+      "id": 22,
+      "type": "brucelee",
+      "pos": {
+        "0": 982,
+        "1": 192
+      },
+      "size": {
+        "0": 737.5104370117188,
+        "1": 435.58367919921875
+      },
+      "flags": {},
+      "order": 22,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 36,
+          "label": "images"
+        },
+        {
+          "name": "image",
+          "type": "COMBO",
+          "link": null,
+          "widget": {
+            "name": "image"
+          },
+          "label": "image"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            25,
+            26
+          ],
+          "shape": 3,
+          "label": "IMAGE",
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null,
+          "shape": 3,
+          "label": "MASK"
+        },
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": null,
+          "shape": 3,
+          "label": "CONDITIONING"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "brucelee"
+      },
+      "widgets_values": [
+        "jie.wav",
+        "# 定义变量\nURL = \"http://127.0.0.1:8188/prompt\"\nOUTPUT_DIR = \"C:\\\\Users\\\\h\\\\Desktop\\\\ComfyUI_windows_portable\\\\ComfyUI\\\\output\"\n\n# 把json传递给正在监听的地址\ndef start_queue(prompt_workflow):\n    p = {\"prompt\": prompt_workflow}\n    data = json.dumps(p).encode('utf-8')\n    requests.post(URL, data=data)\n\n# 开始生成图像，前端UI定义所需变量传递给json\ndef generate_image(prompt_text_positive, prompt_text_negative):\n    with open(\"run1.json\", \"r\", encoding=\"utf-8\") as file_json:\n        prompt = json.load(file_json)\n\n    prompt[\"3\"][\"inputs\"][\"seed\"] = random.randint(1, 1500000000000000)  # 定义种子随机数1到1500000，json的参数传递给comfyUI\n    prompt[\"6\"][\"inputs\"][\"text\"] = f\"digital artwork of a {prompt_text_positive}\"\n    prompt[\"7\"][\"inputs\"][\"text\"] = f\"digital artwork of a {prompt_text_negative}\"\n\n    previous_image = get_latest_image(OUTPUT_DIR)  # 推理出的最新输出图像保存到指定的OUTPUT_DIR变量路径\n\n    start_queue(prompt)",
+        "image",
+        true
+      ]
+    },
+    {
+      "id": 29,
+      "type": "brucelee",
+      "pos": {
+        "0": 1068,
+        "1": 1241
+      },
+      "size": {
+        "0": 285.7475891113281,
+        "1": 382.09954833984375
+      },
+      "flags": {},
+      "order": 29,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 31,
+          "label": "images"
+        },
+        {
+          "name": "image",
+          "type": "COMBO",
+          "link": null,
+          "widget": {
+            "name": "image"
+          },
+          "label": "image"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [],
+          "shape": 3,
+          "label": "IMAGE",
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null,
+          "shape": 3,
+          "label": "MASK"
+        },
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": null,
+          "shape": 3,
+          "label": "CONDITIONING"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "brucelee"
+      },
+      "widgets_values": [
+        "jie.wav",
+        "data = json.dumps(p).encode('utf-8')：使用 json.dumps 将字典 p 转换为 JSON 格式的字符串，然后使用 encode('utf-8') 将其编码为 UTF-8 格式的字节流。",
+        "image",
+        true
+      ]
+    },
+    {
+      "id": 43,
+      "type": "brucelee",
+      "pos": {
+        "0": -1440,
+        "1": -265
+      },
+      "size": {
+        "0": 266.5283203125,
+        "1": 421.64324951171875
+      },
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 72,
+          "label": "images"
+        },
+        {
+          "name": "image",
+          "type": "COMBO",
+          "link": null,
+          "widget": {
+            "name": "image"
+          },
+          "label": "image"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            64
+          ],
+          "shape": 3,
+          "label": "IMAGE",
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null,
+          "shape": 3,
+          "label": "MASK"
+        },
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": null,
+          "shape": 3,
+          "label": "CONDITIONING"
+        }
+      ],
+      "title": "比逻辑运算较",
+      "properties": {
+        "Node name for S&R": "brucelee"
+      },
+      "widgets_values": [
+        "jie.wav",
+        "运算符         描述         示例\nand         逻辑与         a and b\nor         逻辑或         a or b\nnot         逻辑非         not a",
+        "image",
+        true
+      ]
+    },
+    {
+      "id": 33,
+      "type": "brucelee",
+      "pos": {
+        "0": -1459,
+        "1": -764
+      },
+      "size": {
+        "0": 284.190673828125,
+        "1": 441.4814147949219
+      },
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 70,
+          "label": "images"
+        },
+        {
+          "name": "image",
+          "type": "COMBO",
+          "link": null,
+          "widget": {
+            "name": "image"
+          },
+          "label": "image"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            78
+          ],
+          "shape": 3,
+          "label": "IMAGE",
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null,
+          "shape": 3,
+          "label": "MASK"
+        },
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": null,
+          "shape": 3,
+          "label": "CONDITIONING"
+        }
+      ],
+      "title": "比较",
+      "properties": {
+        "Node name for S&R": "brucelee"
+      },
+      "widgets_values": [
+        "jie.wav",
+        "运算符         描述         示例\n==         等于         a == b\n!=         不等于         a != b\n>         大于         a > b\n<         小于         a < b\n>=         大于等于         a >= b\n<=         小于等于         a <= b",
+        "image",
+        true
+      ]
+    },
+    {
+      "id": 32,
+      "type": "brucelee",
+      "pos": {
+        "0": -1471,
+        "1": -1269
+      },
+      "size": {
+        "0": 285.33984375,
+        "1": 460.05908203125
+      },
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 71,
+          "label": "images"
+        },
+        {
+          "name": "image",
+          "type": "COMBO",
+          "link": null,
+          "widget": {
+            "name": "image"
+          },
+          "label": "image"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            62
+          ],
+          "shape": 3,
+          "label": "IMAGE",
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null,
+          "shape": 3,
+          "label": "MASK"
+        },
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": null,
+          "shape": 3,
+          "label": "CONDITIONING"
+        }
+      ],
+      "title": "数学运算",
+      "properties": {
+        "Node name for S&R": "brucelee"
+      },
+      "widgets_values": [
+        "jie.wav",
+        " 运算符         描述         示例\n+         加法         a + b\n-         减法         a - b\n*         乘法         a * b\n/         除法（浮点数）         a / b\n//         整除（取整）         a // b\n%         取模（取余）         a % b\n**         幂运算         a ** b",
+        "image",
+        true
+      ]
+    },
+    {
+      "id": 46,
+      "type": "brucelee",
+      "pos": {
+        "0": -1544,
+        "1": 713
+      },
+      "size": {
+        "0": 449.81927490234375,
+        "1": 445.950927734375
+      },
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 76,
+          "label": "images"
+        },
+        {
+          "name": "image",
+          "type": "COMBO",
+          "link": null,
+          "widget": {
+            "name": "image"
+          },
+          "label": "image"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            67,
+            77
+          ],
+          "shape": 3,
+          "label": "IMAGE",
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null,
+          "shape": 3,
+          "label": "MASK"
+        },
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": null,
+          "shape": 3,
+          "label": "CONDITIONING"
+        }
+      ],
+      "title": "身份运算",
+      "properties": {
+        "Node name for S&R": "brucelee"
+      },
+      "widgets_values": [
+        "jie.wav",
+        "运算符         描述         示例\nis         判断是否为同一对象         a is b\nis not         判断是否不为同一对象         a is not b",
+        "image",
+        true
+      ]
+    },
+    {
+      "id": 45,
+      "type": "brucelee",
+      "pos": {
+        "0": -1470,
+        "1": 1684
+      },
+      "size": {
+        "0": 301.977294921875,
+        "1": 526.473876953125
+      },
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 75,
+          "label": "images"
+        },
+        {
+          "name": "image",
+          "type": "COMBO",
+          "link": null,
+          "widget": {
+            "name": "image"
+          },
+          "label": "image"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            66
+          ],
+          "shape": 3,
+          "label": "IMAGE",
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null,
+          "shape": 3,
+          "label": "MASK"
+        },
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": null,
+          "shape": 3,
+          "label": "CONDITIONING"
+        }
+      ],
+      "title": "赋值运算",
+      "properties": {
+        "Node name for S&R": "brucelee"
+      },
+      "widgets_values": [
+        "jie.wav",
+        "运算符         描述         示例\n=         简单赋值         a = b\n+=         加法赋值         a += b\n-=         减法赋值         a -= b\n*=         乘法赋值         a *= b\n/=         除法赋值         a /= b\n//=         整除赋值         a //= b\n%=         取模赋值         a %= b\n**=         幂赋值         a **= b\n&=         按位与赋值         a &= b\n|=         按位或赋值         a |= b\n^=         按位异或赋值         a ^= b\n<<=         左移赋值         a <<= b\n>>=         右移赋值         a >>= b",
+        "image",
+        true
+      ]
+    },
+    {
+      "id": 50,
+      "type": "brucelee",
+      "pos": {
+        "0": -1044,
+        "1": 786
+      },
+      "size": {
+        "0": 456.4169006347656,
+        "1": 476.39520263671875
+      },
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 77,
+          "label": "images"
+        },
+        {
+          "name": "image",
+          "type": "COMBO",
+          "link": null,
+          "widget": {
+            "name": "image"
+          },
+          "label": "image"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [],
+          "shape": 3,
+          "label": "IMAGE",
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null,
+          "shape": 3,
+          "label": "MASK"
+        },
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": null,
+          "shape": 3,
+          "label": "CONDITIONING"
+        }
+      ],
+      "title": "身份运算示例",
+      "properties": {
+        "Node name for S&R": "brucelee"
+      },
+      "widgets_values": [
+        "jie.wav",
+        "\n        if len(output_images) > 1 and img.format not in excluded_formats:\n            output_image = torch.cat(output_images, dim=0)\n            output_mask = torch.cat(output_masks, dim=0)\n        else:\n            output_image = output_images[0]\n            output_mask = output_masks[0]\n\n        return (output_image, output_mask)",
+        "image",
+        true
+      ]
+    },
+    {
+      "id": 42,
+      "type": "ImpactMakeImageList",
+      "pos": {
+        "0": -659,
+        "1": 148
+      },
+      "size": {
+        "0": 140,
+        "1": 166
+      },
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image1",
+          "type": "IMAGE",
+          "link": 62,
+          "label": "image1"
+        },
+        {
+          "name": "image2",
+          "type": "IMAGE",
+          "link": 64,
+          "label": "image2"
+        },
+        {
+          "name": "image3",
+          "type": "IMAGE",
+          "link": 65,
+          "label": "image3"
+        },
+        {
+          "name": "image4",
+          "type": "IMAGE",
+          "link": 66,
+          "label": "image4"
+        },
+        {
+          "name": "image5",
+          "type": "IMAGE",
+          "link": 67,
+          "label": "image5"
+        },
+        {
+          "name": "image6",
+          "type": "IMAGE",
+          "link": 68,
+          "label": "image6"
+        },
+        {
+          "name": "image7",
+          "type": "IMAGE",
+          "link": 78,
+          "label": "image7"
+        },
+        {
+          "name": "image8",
+          "type": "IMAGE",
+          "link": null,
+          "label": "image8"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            61
+          ],
+          "shape": 6,
+          "label": "IMAGE",
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ImpactMakeImageList"
+      }
+    },
+    {
+      "id": 51,
+      "type": "ImpactMakeImageList",
+      "pos": {
+        "0": -279,
+        "1": 187
+      },
+      "size": {
+        "0": 140,
+        "1": 146
+      },
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image1",
+          "type": "IMAGE",
+          "link": 81,
+          "label": "image1"
+        },
+        {
+          "name": "image2",
+          "type": "IMAGE",
+          "link": 82,
+          "label": "image2"
+        },
+        {
+          "name": "image3",
+          "type": "IMAGE",
+          "link": null,
+          "label": "image3"
+        },
+        {
+          "name": "image4",
+          "type": "IMAGE",
+          "link": null,
+          "label": "image4"
+        },
+        {
+          "name": "image5",
+          "type": "IMAGE",
+          "link": null,
+          "label": "image5"
+        },
+        {
+          "name": "image6",
+          "type": "IMAGE",
+          "link": null,
+          "label": "image6"
+        },
+        {
+          "name": "image7",
+          "type": "IMAGE",
+          "link": null,
+          "label": "image7"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            79
+          ],
+          "shape": 6,
+          "label": "IMAGE",
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ImpactMakeImageList"
+      }
+    },
+    {
+      "id": 31,
+      "type": "brucelee",
+      "pos": {
+        "0": -545,
+        "1": 368
+      },
+      "size": {
+        "0": 210,
+        "1": 355
+      },
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 61,
+          "label": "images"
+        },
+        {
+          "name": "pos_text",
+          "type": "STRING",
+          "link": null,
+          "widget": {
+            "name": "pos_text"
+          },
+          "label": "pos_text"
+        },
+        {
+          "name": "image",
+          "type": "COMBO",
+          "link": null,
+          "widget": {
+            "name": "image"
+          },
+          "label": "image"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            81
+          ],
+          "shape": 3,
+          "label": "IMAGE",
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [],
+          "shape": 3,
+          "label": "MASK",
+          "slot_index": 1
+        },
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": null,
+          "shape": 3,
+          "label": "CONDITIONING"
+        }
+      ],
+      "title": "运算符",
+      "properties": {
+        "Node name for S&R": "brucelee"
+      },
+      "widgets_values": [
+        "数学运算符符号矢量-数学运算符符号矢量图-300453205.webp",
+        "python编程",
+        "image",
+        true
+      ]
+    },
+    {
+      "id": 44,
+      "type": "brucelee",
+      "pos": {
+        "0": -1430,
+        "1": 216
+      },
+      "size": {
+        "0": 261.67584228515625,
+        "1": 447.91021728515625
+      },
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 73,
+          "label": "images"
+        },
+        {
+          "name": "image",
+          "type": "COMBO",
+          "link": null,
+          "widget": {
+            "name": "image"
+          },
+          "label": "image"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            65
+          ],
+          "shape": 3,
+          "label": "IMAGE",
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null,
+          "shape": 3,
+          "label": "MASK"
+        },
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": null,
+          "shape": 3,
+          "label": "CONDITIONING"
+        }
+      ],
+      "title": "位运算二进制",
+      "properties": {
+        "Node name for S&R": "brucelee"
+      },
+      "widgets_values": [
+        "jie.wav",
+        "运算符         描述         示例\n&         按位与         a & b\n|         按位或         a | b\n^         按位异或         a ^ b\n~         按位取反         ~a\n<<         左移         a << b\n>>         右移         a >> b",
+        "image",
+        true
+      ]
+    },
+    {
+      "id": 48,
+      "type": "brucelee",
+      "pos": {
+        "0": -2932,
+        "1": 301
+      },
+      "size": {
+        "0": 419.08013916015625,
+        "1": 762.8884887695312
+      },
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": null,
+          "label": "images"
+        },
+        {
+          "name": "image",
+          "type": "COMBO",
+          "link": null,
+          "widget": {
+            "name": "image"
+          },
+          "label": "image"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76
+          ],
+          "shape": 3,
+          "label": "IMAGE",
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null,
+          "shape": 3,
+          "label": "MASK"
+        },
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": null,
+          "shape": 3,
+          "label": "CONDITIONING"
+        }
+      ],
+      "title": "示例",
+      "properties": {
+        "Node name for S&R": "brucelee"
+      },
+      "widgets_values": [
+        "jie.wav",
+        " # 算术运算符\na = 10\nb = 3\nprint(a + b)  # 输出: 13\nprint(a - b)  # 输出: 7\nprint(a * b)  # 输出: 30\nprint(a / b)  # 输出: 3.3333333333333335\nprint(a // b) # 输出: 3\nprint(a % b)  # 输出: 1\nprint(a ** b) # 输出: 1000\n\n# 比较运算符\nprint(a == b) # 输出: False\nprint(a != b) # 输出: True\nprint(a > b)  # 输出: True\nprint(a < b)  # 输出: False\nprint(a >= b) # 输出: True\nprint(a <= b) # 输出: False\n\n# 逻辑运算符\nc = True\nd = False\nprint(c and d) # 输出: False\nprint(c or d)  # 输出: True\nprint(not c)   # 输出: False\n\n# 位运算符\ne = 5  # 二进制: 0101\nf = 3  # 二进制: 0011\nprint(e & f)  # 输出: 1 (二进制: 0001)\nprint(e | f)  # 输出: 7 (二进制: 0111)\nprint(e ^ f)  # 输出: 6 (二进制: 0110)\nprint(~e)     # 输出: -6 (二进制: 1010)\nprint(e << 1) # 输出: 10 (二进制: 1010)\nprint(e >> 1) # 输出: 2 (二进制: 0010)\n\n# 赋值运算符\ng = 10\ng += 5  # 等价于 g = g + 5\nprint(g)  # 输出: 15\n\n# 身份运算符\nh = [1, 2, 3]\ni = [1, 2, 3]\nj = h\nprint(h is i)  # 输出: False\nprint(h is j)  # 输出: True\n\n# 成员运算符\nk = [1, 2, 3, 4, 5]\nprint(3 in k)  # 输出: True\nprint(6 not in k)  # 输出: True",
+        "image",
+        true
+      ]
+    },
+    {
+      "id": 28,
+      "type": "brucelee",
+      "pos": {
+        "0": 1069,
+        "1": 728
+      },
+      "size": {
+        "0": 300.25,
+        "1": 369.0211181640625
+      },
+      "flags": {},
+      "order": 28,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 30,
+          "label": "images"
+        },
+        {
+          "name": "image",
+          "type": "COMBO",
+          "link": null,
+          "widget": {
+            "name": "image"
+          },
+          "label": "image"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [],
+          "shape": 3,
+          "label": "IMAGE",
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null,
+          "shape": 3,
+          "label": "MASK"
+        },
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": null,
+          "shape": 3,
+          "label": "CONDITIONING"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "brucelee"
+      },
+      "widgets_values": [
+        "jie.wav",
+        "p = {\"prompt\": prompt_workflow}：创建一个字典 p，其中键为 \"prompt\"，值为 prompt_workflow。",
+        "image",
+        true
+      ]
+    },
+    {
+      "id": 52,
+      "type": "brucelee",
+      "pos": {
+        "0": -31,
+        "1": 717
+      },
+      "size": {
+        "0": 300.25,
+        "1": 369.0211181640625
+      },
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 83,
+          "label": "images"
+        },
+        {
+          "name": "image",
+          "type": "COMBO",
+          "link": null,
+          "widget": {
+            "name": "image"
+          },
+          "label": "image"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            82
+          ],
+          "shape": 3,
+          "label": "IMAGE",
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null,
+          "shape": 3,
+          "label": "MASK"
+        },
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": null,
+          "shape": 3,
+          "label": "CONDITIONING"
+        }
+      ],
+      "title": "if语法",
+      "properties": {
+        "Node name for S&R": "brucelee"
+      },
+      "widgets_values": [
+        "jie.wav",
+        "在 Python 中，if 语句可以单独使用，不需要 else 或 elif。if 语句的基本形式是：\nx = 10\n\nif x > 5:\n    print(\"x 大于 5\")\n\nprint(\"这个语句总是会被执行\")",
+        "image",
+        true
+      ]
+    },
+    {
+      "id": 53,
+      "type": "brucelee",
+      "pos": {
+        "0": -385,
+        "1": 1044
+      },
+      "size": {
+        "0": 300.25,
+        "1": 369.0211181640625
+      },
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 84,
+          "label": "images"
+        },
+        {
+          "name": "image",
+          "type": "COMBO",
+          "link": null,
+          "widget": {
+            "name": "image"
+          },
+          "label": "image"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            83
+          ],
+          "shape": 3,
+          "label": "IMAGE",
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null,
+          "shape": 3,
+          "label": "MASK"
+        },
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": null,
+          "shape": 3,
+          "label": "CONDITIONING"
+        }
+      ],
+      "title": "if语法",
+      "properties": {
+        "Node name for S&R": "brucelee"
+      },
+      "widgets_values": [
+        "jie.wav",
+        " 你可以连续使用多个独立的 if 语句，每个 if 语句都会独立地检查其条件：\n\n  x = 10\n\nif x > 5:\n    print(\"x 大于 5\")\n\nif x > 7:\n    print(\"x 大于 7\")\n\nif x == 10:\n    print(\"x 等于 10\")",
+        "image",
+        true
+      ]
+    },
+    {
+      "id": 54,
+      "type": "brucelee",
+      "pos": {
+        "0": -42.95244598388672,
+        "1": 1135.77392578125
+      },
+      "size": {
+        "0": 300.25,
+        "1": 369.0211181640625
+      },
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": null,
+          "label": "images"
+        },
+        {
+          "name": "image",
+          "type": "COMBO",
+          "link": null,
+          "widget": {
+            "name": "image"
+          },
+          "label": "image"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            84
+          ],
+          "shape": 3,
+          "label": "IMAGE",
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null,
+          "shape": 3,
+          "label": "MASK"
+        },
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": null,
+          "shape": 3,
+          "label": "CONDITIONING"
+        }
+      ],
+      "title": "if语法",
+      "properties": {
+        "Node name for S&R": "brucelee"
+      },
+      "widgets_values": [
+        "jie.wav",
+        " else 语句通常用于在 if 条件为假时执行某些操作。else 语句必须与 if 语句配对使用：\n\n\nx = 3\n\nif x > 5:\n    print(\"x 大于 5\")\nelse:\n    print(\"x 小于或等于 5\")",
+        "image",
+        true
+      ]
+    },
+    {
+      "id": 30,
+      "type": "brucelee",
+      "pos": {
+        "0": 367,
+        "1": 786
+      },
+      "size": {
+        "0": 210,
+        "1": 470.14459228515625
+      },
+      "flags": {},
+      "order": 19,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 40,
+          "label": "images"
+        },
+        {
+          "name": "image",
+          "type": "COMBO",
+          "link": null,
+          "widget": {
+            "name": "image"
+          },
+          "label": "image"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            34
+          ],
+          "shape": 3,
+          "label": "IMAGE",
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null,
+          "shape": 3,
+          "label": "MASK"
+        },
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": null,
+          "shape": 3,
+          "label": "CONDITIONING"
+        }
+      ],
+      "title": "字典和键和值",
+      "properties": {
+        "Node name for S&R": "brucelee"
+      },
+      "widgets_values": [
+        "ef7d6807300836abeba4c1f9b900851.png",
+        "",
+        "image",
+        true
+      ]
+    },
+    {
+      "id": 47,
+      "type": "brucelee",
+      "pos": {
+        "0": -1521,
+        "1": 1221
+      },
+      "size": {
+        "0": 382.64068603515625,
+        "1": 411.05963134765625
+      },
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 74,
+          "label": "images"
+        },
+        {
+          "name": "image",
+          "type": "COMBO",
+          "link": null,
+          "widget": {
+            "name": "image"
+          },
+          "label": "image"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            68,
+            85
+          ],
+          "shape": 3,
+          "label": "IMAGE",
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null,
+          "shape": 3,
+          "label": "MASK",
+          "slot_index": 1
+        },
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": null,
+          "shape": 3,
+          "label": "CONDITIONING"
+        }
+      ],
+      "title": "成员运算",
+      "properties": {
+        "Node name for S&R": "brucelee"
+      },
+      "widgets_values": [
+        "jie.wav",
+        "运算符         描述         示例\nin         判断是否在序列中         a in b\nnot in         判断是否不在序列中         a not in b",
+        "image",
+        true
+      ]
+    },
+    {
+      "id": 55,
+      "type": "brucelee",
+      "pos": {
+        "0": -1082.7919921875,
+        "1": 1349.18212890625
+      },
+      "size": {
+        "0": 539.0752563476562,
+        "1": 376.9756774902344
+      },
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 85,
+          "label": "images"
+        },
+        {
+          "name": "image",
+          "type": "COMBO",
+          "link": null,
+          "widget": {
+            "name": "image"
+          },
+          "label": "image"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [],
+          "shape": 3,
+          "label": "IMAGE",
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null,
+          "shape": 3,
+          "label": "MASK",
+          "slot_index": 1
+        },
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": null,
+          "shape": 3,
+          "label": "CONDITIONING"
+        }
+      ],
+      "title": "成员运算",
+      "properties": {
+        "Node name for S&R": "brucelee"
+      },
+      "widgets_values": [
+        "jie.wav",
+        "            if 'A' in i.getbands(): #检查图像是否有 alpha 通道。\n                mask = np.array(i.getchannel('A')).astype(np.float32) / 255.0\n                mask = 1. - torch.from_numpy(mask)\n            else:\n                mask = torch.zeros((64,64), dtype=torch.float32, device=\"cpu\")\n            output_images.append(image)\n            output_masks.append(mask.unsqueeze(0))\n",
+        "image",
+        true
+      ]
+    },
+    {
+      "id": 56,
+      "type": "Reroute",
+      "pos": {
+        "0": 814.0355834960938,
+        "1": -609.6937255859375
+      },
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 20,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": 86,
+          "label": ""
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "IMAGE",
+          "links": [
+            87
+          ],
+          "label": ""
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false
+      }
+    },
+    {
+      "id": 10,
+      "type": "brucelee",
+      "pos": {
+        "0": -23,
+        "1": 59
+      },
+      "size": {
+        "0": 376.4154357910156,
+        "1": 389
+      },
+      "flags": {},
+      "order": 17,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 79,
+          "label": "images"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            39,
+            40,
+            86
+          ],
+          "shape": 3,
+          "label": "IMAGE",
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [],
+          "shape": 3,
+          "label": "MASK",
+          "slot_index": 1
+        },
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": null,
+          "shape": 3,
+          "label": "CONDITIONING"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "brucelee"
+      },
+      "widgets_values": [
+        "dd.jpg",
+        "python编程",
+        "image",
+        true
+      ]
+    },
+    {
+      "id": 17,
+      "type": "Reroute",
+      "pos": {
+        "0": 537.9716796875,
+        "1": 140.71356201171875
+      },
+      "size": [
+        82,
+        26
+      ],
+      "flags": {},
+      "order": 18,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": 39,
+          "label": ""
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            35,
+            36,
+            88
+          ],
+          "slot_index": 0,
+          "label": "IMAGE"
+        }
+      ],
+      "properties": {
+        "showOutputText": true,
+        "horizontal": false
+      }
+    },
+    {
+      "id": 57,
+      "type": "brucelee",
+      "pos": {
+        "0": 1591,
+        "1": -767
+      },
+      "size": {
+        "0": 349.94744873046875,
+        "1": 525.67626953125
+      },
+      "flags": {},
+      "order": 25,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 87,
+          "label": "images"
+        },
+        {
+          "name": "image",
+          "type": "COMBO",
+          "link": null,
+          "widget": {
+            "name": "image"
+          },
+          "label": "image"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": null,
+          "shape": 3,
+          "label": "IMAGE",
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null,
+          "shape": 3,
+          "label": "MASK"
+        },
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": null,
+          "shape": 3,
+          "label": "CONDITIONING",
+          "slot_index": 2
+        }
+      ],
+      "title": "调用其它函数处理",
+      "properties": {
+        "Node name for S&R": "brucelee"
+      },
+      "widgets_values": [
+        "jie.wav",
+        "class GradioInputImage:\n    def load_image(self, image):\n        # 处理图像的代码\n        print(\"Image loaded:\", image)\n\n# 创建实例并调用方法\ngradio_input_image = GradioInputImage()\nimage = \"path/to/image.jpg\"  # 假设这是图像的路径\ngradio_input_image.load_image(image)",
+        "image",
+        true
+      ]
+    },
+    {
+      "id": 11,
+      "type": "brucelee",
+      "pos": {
+        "0": 1219,
+        "1": -458
+      },
+      "size": {
+        "0": 342.6471252441406,
+        "1": 583
+      },
+      "flags": {},
+      "order": 21,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 35,
+          "label": "images"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": null,
+          "shape": 3,
+          "label": "IMAGE",
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null,
+          "shape": 3,
+          "label": "MASK"
+        },
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": null,
+          "shape": 3,
+          "label": "CONDITIONING"
+        }
+      ],
+      "title": "加法",
+      "properties": {
+        "Node name for S&R": "brucelee"
+      },
+      "widgets_values": [
+        "jie.wav",
+        "# 定义一个加法函数\ndef add_numbers(num1, num2):\n    return num1 + num2\n\n# 获取用户输入的两个数字\nnum1 = float(input(\"请输入第一个数字: \"))\nnum2 = float(input(\"请输入第二个数字: \"))\n\n# 调用加法函数并获取结果\nresult = add_numbers(num1, num2)\n\n# 输出结果\nprint(\"两个数字的和是:\", result)",
+        "image",
+        true
+      ]
+    },
+    {
+      "id": 25,
+      "type": "brucelee",
+      "pos": {
+        "0": 1863,
+        "1": 541
+      },
+      "size": {
+        "0": 347.9697265625,
+        "1": 583
+      },
+      "flags": {},
+      "order": 27,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 26,
+          "label": "images"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": null,
+          "shape": 3,
+          "label": "IMAGE",
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null,
+          "shape": 3,
+          "label": "MASK",
+          "slot_index": 1
+        },
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": null,
+          "shape": 3,
+          "label": "CONDITIONING"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "brucelee"
+      },
+      "widgets_values": [
+        "jie.wav",
+        "如果不调用 start_queue 函数，那么这个函数内部的代码就不会被执行。函数定义只是定义了函数的行为，而函数调用才是实际执行这些行为的地方。",
+        "image",
+        true
+      ]
+    },
+    {
+      "id": 58,
+      "type": "brucelee",
+      "pos": {
+        "0": 682,
+        "1": -446
+      },
+      "size": {
+        "0": 454.840087890625,
+        "1": 421.0373229980469
+      },
+      "flags": {},
+      "order": 23,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 88,
+          "label": "images"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": null,
+          "shape": 3,
+          "label": "IMAGE",
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null,
+          "shape": 3,
+          "label": "MASK"
+        },
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": null,
+          "shape": 3,
+          "label": "CONDITIONING"
+        }
+      ],
+      "title": "函数的self和其他名称定义",
+      "properties": {
+        "Node name for S&R": "brucelee"
+      },
+      "widgets_values": [
+        "jie.wav",
+        "def load_image(self):\n运行自己本身这个函数，不用其它函数调用\n\n\n\ndef load_image(self, image):\n  需要变量，需要其它函数调用\n\n\n  函数中的括号名称是参数\n   f\"some text {image} some more text\"\n   f 是字符串的前缀，表示这是一个格式化字符串。\n   {image} 是一个占位符，其中的 expression 可以是任何有效的 Python 表达式\n   \n   ",
+        "image",
+        true
+      ]
+    },
+    {
+      "id": 24,
+      "type": "brucelee",
+      "pos": {
+        "0": 1873,
+        "1": -75
+      },
+      "size": {
+        "0": 317.4004821777344,
+        "1": 559
+      },
+      "flags": {},
+      "order": 26,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 25,
+          "label": "images"
+        },
+        {
+          "name": "image",
+          "type": "COMBO",
+          "link": null,
+          "widget": {
+            "name": "image"
+          },
+          "label": "image"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": null,
+          "shape": 3,
+          "label": "IMAGE",
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null,
+          "shape": 3,
+          "label": "MASK"
+        },
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": null,
+          "shape": 3,
+          "label": "CONDITIONING",
+          "slot_index": 2
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "brucelee"
+      },
+      "widgets_values": [
+        "jie.wav",
+        " p = {\"prompt\": prompt_workflow}  函数名称传递给了prompt，换名字了；prompt 是你在调用 start_queue 函数时传递的变量名称。虽然它们在不同的上下文中使用了不同的名称，但它们指向的是同一个值。",
+        "image",
+        true
+      ]
+    },
+    {
+      "id": 59,
+      "type": "brucelee",
+      "pos": {
+        "0": 2677,
+        "1": -180
+      },
+      "size": {
+        "0": 674.07275390625,
+        "1": 402.946533203125
+      },
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": null,
+          "label": "images"
+        },
+        {
+          "name": "image",
+          "type": "COMBO",
+          "link": null,
+          "widget": {
+            "name": "image"
+          },
+          "label": "image"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": null,
+          "shape": 3,
+          "label": "IMAGE",
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null,
+          "shape": 3,
+          "label": "MASK"
+        },
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": null,
+          "shape": 3,
+          "label": "CONDITIONING",
+          "slot_index": 2
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "brucelee"
+      },
+      "widgets_values": [
+        "jie.wav",
+        "from .gradio_workflow import Hua_Output\n\n\n    #调用gradio_workflow.py里的类和函数处理，这个函数是将处理的图像传递到gradio前端的输出图像\n    def go_to_gradiooutput(image):\n        # 调用类方法处理图片\n        hua_output = Hua_Output()\n        result = hua_output.output_gradio(image)\n        return result",
+        "image",
+        true
+      ]
+    }
+  ],
+  "links": [
+    [
+      25,
+      22,
+      0,
+      24,
+      0,
+      "IMAGE"
+    ],
+    [
+      26,
+      22,
+      0,
+      25,
+      0,
+      "IMAGE"
+    ],
+    [
+      30,
+      27,
+      0,
+      28,
+      0,
+      "IMAGE"
+    ],
+    [
+      31,
+      27,
+      0,
+      29,
+      0,
+      "IMAGE"
+    ],
+    [
+      34,
+      30,
+      0,
+      27,
+      0,
+      "IMAGE"
+    ],
+    [
+      35,
+      17,
+      0,
+      11,
+      0,
+      "IMAGE"
+    ],
+    [
+      36,
+      17,
+      0,
+      22,
+      0,
+      "IMAGE"
+    ],
+    [
+      39,
+      10,
+      0,
+      17,
+      0,
+      "*"
+    ],
+    [
+      40,
+      10,
+      0,
+      30,
+      0,
+      "IMAGE"
+    ],
+    [
+      61,
+      42,
+      0,
+      31,
+      0,
+      "IMAGE"
+    ],
+    [
+      62,
+      32,
+      0,
+      42,
+      0,
+      "IMAGE"
+    ],
+    [
+      64,
+      43,
+      0,
+      42,
+      1,
+      "IMAGE"
+    ],
+    [
+      65,
+      44,
+      0,
+      42,
+      2,
+      "IMAGE"
+    ],
+    [
+      66,
+      45,
+      0,
+      42,
+      3,
+      "IMAGE"
+    ],
+    [
+      67,
+      46,
+      0,
+      42,
+      4,
+      "IMAGE"
+    ],
+    [
+      68,
+      47,
+      0,
+      42,
+      5,
+      "IMAGE"
+    ],
+    [
+      70,
+      48,
+      0,
+      33,
+      0,
+      "IMAGE"
+    ],
+    [
+      71,
+      48,
+      0,
+      32,
+      0,
+      "IMAGE"
+    ],
+    [
+      72,
+      48,
+      0,
+      43,
+      0,
+      "IMAGE"
+    ],
+    [
+      73,
+      48,
+      0,
+      44,
+      0,
+      "IMAGE"
+    ],
+    [
+      74,
+      48,
+      0,
+      47,
+      0,
+      "IMAGE"
+    ],
+    [
+      75,
+      48,
+      0,
+      45,
+      0,
+      "IMAGE"
+    ],
+    [
+      76,
+      48,
+      0,
+      46,
+      0,
+      "IMAGE"
+    ],
+    [
+      77,
+      46,
+      0,
+      50,
+      0,
+      "IMAGE"
+    ],
+    [
+      78,
+      33,
+      0,
+      42,
+      6,
+      "IMAGE"
+    ],
+    [
+      79,
+      51,
+      0,
+      10,
+      0,
+      "IMAGE"
+    ],
+    [
+      81,
+      31,
+      0,
+      51,
+      0,
+      "IMAGE"
+    ],
+    [
+      82,
+      52,
+      0,
+      51,
+      1,
+      "IMAGE"
+    ],
+    [
+      83,
+      53,
+      0,
+      52,
+      0,
+      "IMAGE"
+    ],
+    [
+      84,
+      54,
+      0,
+      53,
+      0,
+      "IMAGE"
+    ],
+    [
+      85,
+      47,
+      0,
+      55,
+      0,
+      "IMAGE"
+    ],
+    [
+      86,
+      10,
+      0,
+      56,
+      0,
+      "*"
+    ],
+    [
+      87,
+      56,
+      0,
+      57,
+      0,
+      "IMAGE"
+    ],
+    [
+      88,
+      17,
+      0,
+      58,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [
+    {
+      "title": "函数",
+      "bounding": [
+        501,
+        60,
+        145,
+        133
+      ],
+      "color": "#3f789e",
+      "font_size": 50,
+      "flags": {}
+    },
+    {
+      "title": "调用其它函数结果",
+      "bounding": [
+        2607,
+        -321,
+        917,
+        930
+      ],
+      "color": "#3f789e",
+      "font_size": 50,
+      "flags": {}
+    }
+  ],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.6588450000000013,
+      "offset": [
+        1092.4990936662887,
+        125.37817451819004
+      ]
+    },
+    "workspace_info": {
+      "id": "IjPLuOdl7aaAzq66MeGYC",
+      "saveLock": false,
+      "cloudID": null,
+      "coverMediaPath": null
+    }
+  },
+  "version": 0.4
+}
