@@ -1,0 +1,161 @@
+{
+  "20": {
+    "inputs": {
+      "images": [
+        "44",
+        0
+      ]
+    },
+    "class_type": "hua_gradiooutput",
+    "_meta": {
+      "title": "图像输出到gradio前端"
+    }
+  },
+  "28": {
+    "inputs": {
+      "seed": -1
+    },
+    "class_type": "Seed (rgthree)",
+    "_meta": {
+      "title": "Seed (rgthree)"
+    }
+  },
+  "41": {
+    "inputs": {
+      "add_noise": "enable",
+      "noise_seed": [
+        "28",
+        0
+      ],
+      "steps": 20,
+      "cfg": 8,
+      "sampler_name": "euler",
+      "scheduler": "normal",
+      "start_at_step": 0,
+      "end_at_step": 10000,
+      "return_with_leftover_noise": "disable",
+      "model": [
+        "42",
+        0
+      ],
+      "positive": [
+        "52",
+        0
+      ],
+      "negative": [
+        "47",
+        0
+      ],
+      "latent_image": [
+        "43",
+        0
+      ]
+    },
+    "class_type": "KSamplerAdvanced",
+    "_meta": {
+      "title": "KSampler (Advanced)"
+    }
+  },
+  "42": {
+    "inputs": {
+      "ckpt_name": "动漫mistoonAnime_v30.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Load Checkpoint"
+    }
+  },
+  "43": {
+    "inputs": {
+      "width": 512,
+      "height": 512,
+      "batch_size": 1
+    },
+    "class_type": "EmptyLatentImage",
+    "_meta": {
+      "title": "Empty Latent Image"
+    }
+  },
+  "44": {
+    "inputs": {
+      "samples": [
+        "41",
+        0
+      ],
+      "vae": [
+        "42",
+        2
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    }
+  },
+  "47": {
+    "inputs": {
+      "text": [
+        "54",
+        0
+      ],
+      "speak_and_recognation": true,
+      "clip": [
+        "42",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "52": {
+    "inputs": {
+      "text": [
+        "53",
+        0
+      ],
+      "speak_and_recognation": true,
+      "clip": [
+        "42",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "53": {
+    "inputs": {
+      "string": "girl",
+      "speak_and_recognation": true
+    },
+    "class_type": "hua_textok",
+    "_meta": {
+      "title": "gradio正向提示词"
+    }
+  },
+  "54": {
+    "inputs": {
+      "string": "",
+      "speak_and_recognation": true
+    },
+    "class_type": "hua_textbad",
+    "_meta": {
+      "title": "gradio负向提示词"
+    }
+  },
+  "55": {
+    "inputs": {
+      "images": [
+        "44",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  }
+}
