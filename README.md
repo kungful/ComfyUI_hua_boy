@@ -12,10 +12,12 @@
 
 ## 安装
 
-### 自动安装
+### 导航到custom_nodes
 1. **克隆仓库**：
    ```bash
    git clone https://github.com/yourusername/ComfyUI_hua_boy.git
+   cd ComfyUI_hua_boy
+   ..\..\..\python_embeded\python.exe -m pip install -r requirements.txt
 ![预览image](https://github.com/kungful/ComfyUI_hua_boy/blob/c4176cc896378e4745925c1d528cb910f6f6fa11/Sample_preview/c1e59d869b7f79c33f686b94c1db368.png)
 ![预览image](https://github.com/kungful/ComfyUI_hua_boy/blob/c4176cc896378e4745925c1d528cb910f6f6fa11/Sample_preview/484b25201870c5e8105a6ee08e6370d.png)
 ![预览image](https://github.com/kungful/ComfyUI_hua_boy/blob/c4176cc896378e4745925c1d528cb910f6f6fa11/Sample_preview/6b8564af2dbb2b75185f0bcc7cf5cd5.png)
