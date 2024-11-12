@@ -22,6 +22,7 @@
 
 ### 把工作流文件放到comfyui根目录###
 1. **示例**
+   ```bash
 D:\
 └── comfyUI\
     ├── ComfyUI\
