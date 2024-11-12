@@ -1,8 +1,9 @@
 # ComfyUI_hua_boy
 
 ## 概述
+_ **示例工作流在** Sample_preview 文件夹里面
 `ComfyUI_hua_boy` 是一个为 ComfyUI工作流变成webui的项目
-_ *示例工作流在 Sample_preview 文件夹里面
+
 
 ## 未完成的功能。
 - **Gradio 集成**：根据数字键检索自动开启 gradio 前端图像输入框。
