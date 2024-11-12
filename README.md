@@ -1,21 +1,19 @@
 # ComfyUI_hua_boy
 
-## Overview
-`ComfyUI_hua_boy` is a custom node extension for ComfyUI that enhances the user experience by allowing more flexible and automated selection of pictures and models based on string judgments. This project aims to streamline the workflow by integrating advanced features such as automatic gradio frontend image input, model selection, resolution selection, seed management, and more.
+## 概述
+`ComfyUI_hua_boy` 是一个为 ComfyUI工作流变成webui的项目
 
-## Features
-- **String-Based Selection**: Automatically select pictures and models based on string judgments derived from the images.
-- **Gradio Integration**: Automatically open gradio frontend image input boxes based on numeric key retrieval.
-- **Model Selection**: Easily select models for your projects.
-- **Resolution Selection**: Choose the desired resolution for your outputs.
-- **Seed Management**: Manage seeds for reproducibility.
-- **Enhanced UI**: A more aesthetically pleasing and user-friendly interface.
-- **Robust Code**: Improved code robustness for better performance and fewer errors.
+## 未完成的功能。
+- **Gradio 集成**：根据数字键检索自动开启 gradio 前端图像输入框。
+- **模型选择**：轻松选择项目所需的模型。
+- **分辨率选择**：选择所需的输出分辨率。
+- **种子管理**：随机种。
+- **增强的界面**：更美观、用户友好的界面。
 
-## Installation
+## 安装
 
-### Automatic Installation
-1. **Clone the Repository**:
+### 自动安装
+1. **克隆仓库**：
    ```bash
    git clone https://github.com/yourusername/ComfyUI_hua_boy.git
 ![预览image](https://github.com/kungful/ComfyUI_hua_boy/blob/c4176cc896378e4745925c1d528cb910f6f6fa11/Sample_preview/c1e59d869b7f79c33f686b94c1db368.png)
