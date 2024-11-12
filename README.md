@@ -19,8 +19,9 @@
    cd ComfyUI_hua_boy
    ..\..\..\python_embeded\python.exe -m pip install -r requirements.txt
 ## 使用方法
+你的comfyui搭建好工作流后开启comfyui设置里的开发者模式，保存api格式工作流放入下面的路径替换即可
 
-### 把工作流文件放到comfyui根目录###
+### 把api格式工作流文件放到comfyui根目录###
 1. **示例**
    ```bash
    D:\
