@@ -1,9 +1,10 @@
 # ComfyUI_hua_boy
 
 Select pictures and models by judging strings, and use the string judgment deduced from the pictures. 
-把run1.json放到comfyui的根目录
-在你的python环境安装好gradio模块
-pip install -r requirements.txt
+
+把run1.json放到comfyui的根目录，
+在你的python环境安装好gradio模块，
+pip install -r requirements.txt，
 If installing manually:
 Clone this repo into custom_nodes folder.
 计划要实现的功能：通过检索数字键自动开启gradio前端图像输入框；模型选择；分辨率选择；种子；更美观的界面更健壮的代码  后会有期
