@@ -33,9 +33,11 @@
               └── ComfyUI_hua_boy
        
 ![预览image](https://github.com/kungful/ComfyUI_hua_boy/blob/c4176cc896378e4745925c1d528cb910f6f6fa11/Sample_preview/c1e59d869b7f79c33f686b94c1db368.png)
-##搭建需要封装的工作流##
+### 搭建需要封装的工作流
 需要使用本插件的节点才可以与gradio前端交互。随机种输入输出等
 ![预览image](https://github.com/kungful/ComfyUI_hua_boy/blob/c4176cc896378e4745925c1d528cb910f6f6fa11/Sample_preview/484b25201870c5e8105a6ee08e6370d.png)
+### 思维导图节点
+不可推理
 ![预览image](https://github.com/kungful/ComfyUI_hua_boy/blob/c4176cc896378e4745925c1d528cb910f6f6fa11/Sample_preview/6b8564af2dbb2b75185f0bcc7cf5cd5.png)
 
 ![预览image](https://github.com/kungful/ComfyUI_hua_boy/blob/a58958bcd59ec3c44130a8f72ea061b08d6a555a/Sample_preview/image.png)
