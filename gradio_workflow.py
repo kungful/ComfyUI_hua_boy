@@ -265,7 +265,7 @@ def generate_image(inputimage1,prompt_text_positive, prompt_text_negative):
 
         except Exception as e:
            print(f"发生错误: {e}")
-           return Non     
+           return None     
 
 # 创建 Gradio 界面，定义输入和输出
 demo = gr.Interface(
