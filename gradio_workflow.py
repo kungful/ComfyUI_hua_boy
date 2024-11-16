@@ -253,23 +253,28 @@ def generate_image(inputimage1,prompt_text_positive, prompt_text_negative):
         latest_image = os.path.join(folder, image_files[-1]) if image_files else None
         return latest_image
 
-    previous_image = get_latest_image(OUTPUT_DIR)  # 推理出的最新输出图像保存到指定的OUTPUT_DIR变量路径
+    previous_image = get_latest_image(OUTPUT_DIR)
 
     while True:   # 这是一个循环获取指定路径的最新图像，休眠一秒钟后继续循环
-        latest_image = get_latest_image(OUTPUT_DIR)
-        if latest_image != previous_image:
-            return latest_image
+        try:
+           latest_image = get_latest_image(OUTPUT_DIR)
+           if latest_image != previous_image:
+               print(f"检测到新的图像到radio前端: {latest_image}")
+               return Image.open(latest_image)
+           time.sleep(0.1)# 休眠一秒钟
 
-        time.sleep(0.1)# 休眠一秒钟
+        except Exception as e:
+           print(f"发生错误: {e}")
+           return Non     
 
 # 创建 Gradio 界面，定义输入和输出
 demo = gr.Interface(
     fn=generate_image,
     inputs=[
-        gr.Image(type="pil", label="上传图像", height=512, width=512), 
+        gr.Image(type="pil", label="上传图像", height=256, width=256), 
         gr.Textbox(label="正向提示文本"), 
         gr.Textbox(label="负向提示文本")],
-    outputs=gr.Image(type="filepath", label="生成的图像", height=512, width=512),
+    outputs=gr.Image(type="pil", label="生成的图像", height=512, width=512),
     
     title="封装comfyUI工作流",
     submit_btn="开始跑图",  # 汉化提交按钮
