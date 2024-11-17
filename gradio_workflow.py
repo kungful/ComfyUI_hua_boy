@@ -252,20 +252,18 @@ def generate_image(inputimage1,prompt_text_positive, prompt_text_negative):
         image_files.sort(key=lambda x: os.path.getmtime(os.path.join(folder, x)))
         latest_image = os.path.join(folder, image_files[-1]) if image_files else None
         return latest_image
-
+        
     previous_image = get_latest_image(OUTPUT_DIR)
+    
+    
+    while True:   # 这是一个循环获取指定路径的最新图像，休眠一秒钟后继续循环       
+        latest_image = get_latest_image(OUTPUT_DIR)
+        if latest_image != previous_image:
+            print("打印一下旧的图像:", previous_image)
+            print("打印一下检测到新的图像:", latest_image)
+            return Image.open(latest_image)
 
-    while True:   # 这是一个循环获取指定路径的最新图像，休眠一秒钟后继续循环
-        try:
-           latest_image = get_latest_image(OUTPUT_DIR)
-           if latest_image != previous_image:
-               print(f"检测到新的图像到radio前端: {latest_image}")
-               return Image.open(latest_image)
-           time.sleep(0.1)# 休眠一秒钟
-
-        except Exception as e:
-           print(f"发生错误: {e}")
-           return None     
+        time.sleep(3)# 休眠3秒钟    
 
 # 创建 Gradio 界面，定义输入和输出
 demo = gr.Interface(
