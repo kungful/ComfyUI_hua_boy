@@ -1,6 +1,7 @@
 from collections import Counter
 from PIL import Image
 import re
+from .hua_icons import icons
 class Huaword:
     def __init__(self):
         pass
@@ -19,7 +20,7 @@ class Huaword:
     OUTPUT_TOOLTIPS = ("在字符串中出现了你提到的词则会选在image1，如果没有就image2输出",)
     FUNCTION = "test"
     OUTPUT_NODE = True
-    CATEGORY = "靓仔"
+    CATEGORY = icons.get("hua_boy_one")
 
     def test(self, text1, text2, image1, image2):
         text2_words = set(word.lower() for word in text2.split())
