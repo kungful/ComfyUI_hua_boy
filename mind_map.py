@@ -4,6 +4,7 @@ import numpy as np
 import torch
 # 导入 folder_paths 模块
 import folder_paths # type: ignore
+from .hua_icons import icons
 
 class Go_to_image:
     _color_channels = 3  # 假设RGB颜色通道数为3
@@ -29,7 +30,7 @@ class Go_to_image:
 
     FUNCTION = "load_image" #函数名称
 
-    CATEGORY = "靓仔"  #传递一级类显示在树列表
+    CATEGORY = icons.get("hua_boy_one")  #传递一级类显示在树列表
 
     def load_image(self, image):
         image_path = folder_paths.get_annotated_filepath(image)
