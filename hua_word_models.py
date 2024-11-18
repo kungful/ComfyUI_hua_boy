@@ -1,6 +1,7 @@
 from collections import Counter
 from PIL import Image
 import re
+from .hua_icons import icons
 class Modelhua:
     def __init__(self):
         pass
@@ -19,7 +20,7 @@ class Modelhua:
     OUTPUT_TOOLTIPS = ("在字符串中出现了你提到的词则会选在model1，如果没有就model2输出",)
     FUNCTION = "load_model_hua"
     OUTPUT_NODE = True
-    CATEGORY = "靓仔"
+    CATEGORY = icons.get("hua_boy_one")
 
     def load_model_hua(self, text1, text2, model1, model2):
         text2_words = set(word.lower() for word in text2.split())
