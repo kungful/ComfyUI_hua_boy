@@ -24,6 +24,7 @@ current_dir = os.path.dirname(os.path.abspath(__file__))# 获取当前文件的�
 parent_dir = os.path.dirname(os.path.dirname(current_dir))# 获取上两级目录
 sys.path.append(parent_dir)# 将上两级目录添加到 sys.path
 from comfy.cli_args import args
+from .hua_icons import icons
 
 
 class GradioTextOk:
@@ -39,7 +40,7 @@ class GradioTextOk:
     OUTPUT_TOOLTIPS = ("A conditioning containing the embedded text used to guide the diffusion model.",)
     FUNCTION = "encode"
 
-    CATEGORY = "靓仔"
+    CATEGORY = icons.get("hua_boy_one")
     DESCRIPTION = "Encodes a text prompt using a CLIP model into an embedding that can be used to guide the diffusion model towards generating specific images."
 
     def encode(self,string):
@@ -59,7 +60,7 @@ class GradioTextBad:
     OUTPUT_TOOLTIPS = ("A conditioning containing the embedded text used to guide the diffusion model.",)
     FUNCTION = "encode"
 
-    CATEGORY = "靓仔"
+    CATEGORY = icons.get("hua_boy_one")
     DESCRIPTION = "Encodes a text prompt using a CLIP model into an embedding that can be used to guide the diffusion model towards generating specific images."
 
     def encode(self,string):
@@ -77,7 +78,7 @@ class GradioInputImage:
     OUTPUT_TOOLTIPS = ("这是一个gradio输入图片的节点",)
     FUNCTION = "load_image"
     OUTPUT_NODE = True
-    CATEGORY = "靓仔"
+    CATEGORY = icons.get("hua_boy_one")
     RETURN_TYPES = ("IMAGE", "MASK")
 
 
@@ -148,7 +149,7 @@ class Hua_Output:
     RETURN_TYPES = () # 返回类型为空，因为不需要返回任何内容到前端
     FUNCTION = "output_gradio" # 定义函数名
     OUTPUT_NODE = True
-    CATEGORY = "靓仔"
+    CATEGORY = icons.get("hua_boy_one")
 
     def output_gradio(self, images):
         
@@ -165,7 +166,7 @@ class Hua_Output:
             file = f"output_{timestamp}_{batch_number:05}.png" # 固定文件名，使用时间戳生成唯一的文件名  
             image_path_gradio = os.path.join(full_output_folder, file)  # 生成图像路径                      
             img.save(os.path.join(full_output_folder, file), compress_level=self.compress_level) # 保存图像到指定路径，并设置压缩级别
-            print(f"打印 image路径及文件名: {image_path_gradio}")  # 打印路径和文件名到终端
+            print(f"打印 output_gradio节点路径及文件名: {image_path_gradio}")  # 打印路径和文件名到终端
         return image_path_gradio   # 返回路径和文件名
 
 
@@ -205,10 +206,10 @@ def generate_image(inputimage1,prompt_text_positive, prompt_text_negative):
         return None  # 如果遍历完所有项都没有找到匹配的值，返回 None。
     
     # 调用 find_key_by_name 函数，并将返回值赋给左边一个变量。
-    image_input_key = find_key_by_name(prompt, "gradio前端传入图像")
-    seed_key = find_key_by_name(prompt, "Seed (rgthree)") # 如果comfyui中文界面保存api格式工作流，那么是检索不到的。所以要用英文界面保存api格式工作流。
-    text_ok_key = find_key_by_name(prompt, "gradio正向提示词")    
-    text_bad_key = find_key_by_name(prompt, "gradio负向提示词")   
+    image_input_key = find_key_by_name(prompt, "☀️gradio前端传入图像")
+    seed_key = find_key_by_name(prompt, "🧙hua_gradio随机种") # 如果comfyui中文界面保存api格式工作流，那么是检索不到的。所以要用英文界面保存api格式工作流。
+    text_ok_key = find_key_by_name(prompt, "💧gradio正向提示词")    
+    text_bad_key = find_key_by_name(prompt, "🔥gradio负向提示词")   
     print("输入图像节点的数字键:", image_input_key)
     print("正向提示词节点的数字键:", text_ok_key)  
     print("随机种子节点的数字键:", seed_key)  
@@ -233,7 +234,7 @@ def generate_image(inputimage1,prompt_text_positive, prompt_text_negative):
     if image_input_key:
         prompt[image_input_key]["inputs"]["image"] = inputfilename  # 指定第一张图像的文件名    
     if seed_key:
-        prompt[seed_key]["inputs"]["seed"] = random.randint(-100, 100)  # 定义种子随机数1到1500000，json的参数传递给comfyUI
+        prompt[seed_key]["inputs"]["seed"] = random.randint(0, 0xffffffffffffffff)  # 定义种子随机数0到0xffffffffffffffff，json的参数传递给comfyUI
     # prompt["3"]["inputs"]["seed"] = random.randint(1, 1500000000000000)  # 定义种子随机数1到1500000，json的参数传递给comfyUI
     if text_ok_key:
         prompt[text_ok_key]["inputs"]["string"] = f"{prompt_text_positive}" #字典中的键[]的值是字符串，f代表字符串，占位符{}里是变量的函数的参数prompt_text_positive，就是gradio前端传入的字符串
@@ -263,7 +264,7 @@ def generate_image(inputimage1,prompt_text_positive, prompt_text_negative):
             print("打印一下检测到新的图像:", latest_image)
             return Image.open(latest_image)
 
-        time.sleep(3)# 休眠3秒钟    
+        time.sleep(3)# 休眠3秒钟
 
 # 创建 Gradio 界面，定义输入和输出
 demo = gr.Interface(
