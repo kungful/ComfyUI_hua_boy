@@ -11,7 +11,7 @@ _ **`ComfyUI_hua_boy` 是一个为 ComfyUI工作流变成webui的项目**
 - **模型选择**：轻松选择项目所需的模型。
 - **分辨率选择**：选择所需的输出分辨率。
 - **种子管理**：
-<span style="background-color: lightgreen;">随机种。已经完成</span>                  
+<span style="color:#FF5733;">这段文字是橙色的</span>       
 - **增强的界面**：更美观、用户友好的界面。
 
 ## 安装
