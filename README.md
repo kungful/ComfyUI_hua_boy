@@ -5,12 +5,13 @@ _ **示例工作流在** Sample_preview 文件夹里面
 _ **`ComfyUI_hua_boy` 是一个为 ComfyUI工作流变成webui的项目**
 
 
-## 未完成的功能。
+## 计划的功能。
 - **自动保存api json流**: 尝试前端选择api json工作流
 - **Gradio 集成**：根据数字键检索自动开启 gradio 前端图像输入框。
 - **模型选择**：轻松选择项目所需的模型。
 - **分辨率选择**：选择所需的输出分辨率。
-- **种子管理**：随机种。                  <span style="background-color: lightgreen;">已经完成</span>
+- **种子管理**：
+- <span style="background-color: lightgreen;">随机种。已经完成</span>                  
 - **增强的界面**：更美观、用户友好的界面。
 
 ## 安装
