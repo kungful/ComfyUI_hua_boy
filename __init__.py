@@ -2,7 +2,7 @@ from .hua_word_image import Huaword
 from .hua_word_models import Modelhua
 from .gradio_workflow import GradioInputImage, Hua_Output, GradioTextOk, GradioTextBad
 from .mind_map import Go_to_image
-from .hua_nodes import Hua_gradio_Seed
+from .hua_nodes import Hua_gradio_Seed, Hua_gradio_jsonsave
 
 NODE_CLASS_MAPPINGS = {
     "ComfyUI_hua_boy": Huaword,
@@ -12,7 +12,8 @@ NODE_CLASS_MAPPINGS = {
     "brucelee": Go_to_image,
     "hua_textok": GradioTextOk,
     "hua_textbad": GradioTextBad,
-    "hua_gradio_seed": Hua_gradio_Seed
+    "hua_gradio_seed": Hua_gradio_Seed,
+    "hua_gradio_jsonsave": Hua_gradio_jsonsave
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
@@ -23,7 +24,8 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "brucelee": "⭐思维导图",
     "hua_textok": "💧gradio正向提示词",
     "hua_textbad": "🔥gradio负向提示词",
-    "hua_gradio_seed": "🧙hua_gradio随机种"
+    "hua_gradio_seed": "🧙hua_gradio随机种",
+    "hua_gradio_jsonsave": "📁hua_gradio_json保存"
 }
 
 jie = """
