@@ -184,39 +184,54 @@ def start_queue(prompt_workflow):
     except requests.RequestException as e:
         print(f"网络请求失败: {e}")
 
+# 检索指定路径的JSON文件
+def get_json_files():
+    json_files = [f for f in os.listdir(OUTPUT_DIR) if f.endswith('.json')]
+    return json_files
+
+# 刷新JSON文件列表
+def refresh_json_files():
+    new_choices = get_json_files()
+    return gr.update(choices=new_choices)
+
+
+
+
 # 开始生成图像，前端UI定义所需变量传递给json
-def generate_image(inputimage1,prompt_text_positive, prompt_text_negative):
+def generate_image(inputimage1,prompt_text_positive, prompt_text_negative, json_file):
 
-        # 打印当前工作目录
-    print(f"当前脚本api工作流目录: {os.getcwd()}")
-    # 检查文件是否存在
-    if not os.path.exists("run1.json"):
-        print("File run1.json does not exist in the current working directory.")
-        return
+#--------------------------------------------------------------------获取json文件
 
+    # 构建完整的JSON文件路径
+    json_path = os.path.join(OUTPUT_DIR, json_file)
 
     with open("run1.json", "r", encoding="utf-8") as file_json:
-        prompt = json.load(file_json)  #加载到一个名为 prompt 的字典中。
-    
+        prompt = json.load(file_json)  #加载到一个名为 prompt 的字典中。  
+        
+
+#----------------------------------------------------------------------
+
     #这个函数的意义就是通过类名称定位出数字key，后续自动填写到api节点里，gradio就能方便的传递变量了。参数没写self就不会自动执行，需要调用才会执行
     def find_key_by_name(prompt, name):#这行代码定义了一个名为 find_key_by_name 的函数。prompt：一个字典，表示 JSON 数据。name：一个字符串，表示你要查找的字典名称。
         for key, value in prompt.items():#使用 for 循环遍历 prompt字典中的每一项 。key 是字典的键，value 是字典的值。 
             if isinstance(value, dict) and value.get("_meta", {}).get("title") == name:#字典-键-值；检查一个变量value是否是一个字典，并且该字典中是否包含一个键为"_meta"的子字典，且该子字典中是否包含一个键为"title"的值，并且这个值等于变量name。
                 return key#相等就返回一个key数字键
         return None  # 如果遍历完所有项都没有找到匹配的值，返回 None。
-    
+
+   
     # 调用 find_key_by_name 函数，并将返回值赋给左边一个变量。
     image_input_key = find_key_by_name(prompt, "☀️gradio前端传入图像")
     seed_key = find_key_by_name(prompt, "🧙hua_gradio随机种") # 如果comfyui中文界面保存api格式工作流，那么是检索不到的。所以要用英文界面保存api格式工作流。
     text_ok_key = find_key_by_name(prompt, "💧gradio正向提示词")    
     text_bad_key = find_key_by_name(prompt, "🔥gradio负向提示词")   
+    
     print("输入图像节点的数字键:", image_input_key)
     print("正向提示词节点的数字键:", text_ok_key)  
     print("随机种子节点的数字键:", seed_key)  
 
     '''双引号里是字符串哦。在 Python 中，字典的键和值可以是字符串、数字、布尔值、列表、字典等类型。
     当你使用变量名来访问字典中的键时，Python 会自动处理这些类型，包括字符串中的双引号。'''
-
+    
 
     # 检查 inputimage1 是否为空图像
     if inputimage1 is None or (isinstance(inputimage1, Image.Image) and inputimage1.size == (0, 0)):
@@ -266,21 +281,49 @@ def generate_image(inputimage1,prompt_text_positive, prompt_text_negative):
 
         time.sleep(3)# 休眠3秒钟
 
-# 创建 Gradio 界面，定义输入和输出
-demo = gr.Interface(
-    fn=generate_image,
-    inputs=[
-        gr.Image(type="pil", label="上传图像", height=256, width=256), 
-        gr.Textbox(label="正向提示文本"), 
-        gr.Textbox(label="负向提示文本")],
-    outputs=gr.Image(type="pil", label="生成的图像", height=512, width=512),
+def fuck(json_file):
+    json_path = os.path.join(OUTPUT_DIR, json_file)
+    with open(json_path, "r", encoding="utf-8") as file_json:
+        prompt = json.load(file_json)  #加载到一个名为 prompt 的字典中。     
+    def find_key_by_name(prompt, name):
+        for key, value in prompt.items():
+            if isinstance(value, dict) and value.get("_meta", {}).get("title") == name:
+                return key
+        return None 
+    image_input_key = find_key_by_name(prompt, "☀️gradio前端传入图像")
+    if image_input_key is None:
+        return gr.update(visible=False)
+    else:
+        return gr.update(visible=True)
+
+
+# 创建Gradio界面3
+with gr.Blocks() as demo:
+    gr.Markdown("# 封装ComfyUI工作流")
+    with gr.Row():
+        input_image = gr.Image(type="pil", label="上传图像", height=256, width=256)
+    with gr.Row():
+        with gr.Column():
+            prompt_positive = gr.Textbox(label="正向提示文本")
+        with gr.Column():
+            prompt_negative = gr.Textbox(label="负向提示文本")
+    with gr.Row():
+        with gr.Column(scale=3):
+            json_dropdown = gr.Dropdown(choices=get_json_files(), label="JSON文件")
+        with gr.Column(scale=1):
+            refresh_button = gr.Button("刷新工作流")
+    with gr.Row():
+        run_button = gr.Button("开始跑图")
+    with gr.Row():
+        output_image = gr.Image(type="pil", label="生成的图像", height=512, width=512)
     
-    title="封装comfyUI工作流",
-    submit_btn="开始跑图",  # 汉化提交按钮
-    clear_btn="清除",  # 汉化清除按钮
+    # 绑定事件
+    refresh_button.click(refresh_json_files, inputs=[], outputs=json_dropdown)
 
-)
+    # 绑定change事件
+    json_dropdown.change(fuck, inputs=json_dropdown, outputs=input_image)
 
+    run_button.click(generate_image, inputs=[input_image, prompt_positive, prompt_negative, json_dropdown], outputs=output_image)
 
 # 启动 Gradio 界面，并创建一个公共链接
 def luanch_gradio(demo):
