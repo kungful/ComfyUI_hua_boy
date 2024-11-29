@@ -1,5 +1,6 @@
 # ComfyUI_hua_boy
-
+![预览image](https://github.com/kungful/ComfyUI_hua_boy/blob/ab8f8179d412bc7b66263f2814b05dad1933d909/Sample_preview/%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95.png)
+![预览image](https://github.com/kungful/ComfyUI_hua_boy/blob/ab8f8179d412bc7b66263f2814b05dad1933d909/Sample_preview/%E8%8A%82%E7%82%B9%E7%9B%AE%E5%89%8D%E6%95%B0%E9%87%8F.png)
 ## 概述
 <span style="color:blue;">**示例工作流在**</span> Sample_preview 文件夹里面
 <span style="color:blue;">**`ComfyUI_hua_boy` 是一个为 ComfyUI工作流变成webui的项目**</span>
