@@ -5,11 +5,12 @@
 <span style="color:blue;">**`ComfyUI_hua_boy` 是一个为 ComfyUI工作流变成webui的项目**</span>
 
 ## 计划的功能
-- **自动保存api json流**: 尝试前端选择api json工作流
-- **Gradio 集成**：根据数字键检索自动开启 gradio 前端图像输入框。
-- **模型选择**：轻松选择项目所需的模型。
-- **分辨率选择**：选择所需的输出分辨率。
-- **种子管理**：
+- **自动保存api json流**: 已编写完成
+- **gradio前端动态显示图像输入口**：已编写完成
+- **模型选择**：开发中.......
+- **分辨率选择**：开发中......
+- **种子管理**：已编写完成
+- **生成的批次** 开发中.....
   <span style="color:purple;">随机种已经完成</span>
 - **增强的界面**：更美观、用户友好的界面。
 
@@ -22,18 +23,17 @@
    cd ComfyUI_hua_boy
    ..\..\..\python_embeded\python.exe -m pip install -r requirements.txt
 ## 使用方法
-你的comfyui搭建好工作流后开启comfyui设置里的开发者模式，保存api格式工作流放入下面的路径替换即可
+你的comfyui搭建好工作流后不需要手动保存api格式json文件，只需要运行一遍跑通后就可以了，在输出端接入"☀️gradio前端传入图像这个节点就行
 
-### 把api格式工作流文件放到comfyui根目录###
-1. **示例**
+### 已经完成自动保存api工作流功能，工作流位置在output
+1. **api工作流自动保存位置**
    ```bash
    D:\
      └── comfyUI\
        ├── ComfyUI\
-       │   ├── run1.json
+       │   ├── output
        │   └── ...
-       └── custom_nodes\
-              └── ComfyUI_hua_boy
+     
 
 ### gradio前端效果
 后续会开发更多功能
