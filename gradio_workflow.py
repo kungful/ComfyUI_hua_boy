@@ -299,7 +299,7 @@ def fuck(json_file):
 
 # 创建Gradio界面3
 with gr.Blocks() as demo:
-    gr.Markdown("# 封装ComfyUI工作流")
+    gr.Markdown("# [封装comfyUI工作流](https://github.com/kungful/ComfyUI_hua_boy.git)")
     with gr.Row():
         input_image = gr.Image(type="pil", label="上传图像", height=256, width=256)
     with gr.Row():
