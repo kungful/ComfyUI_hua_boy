@@ -205,7 +205,7 @@ def generate_image(inputimage1,prompt_text_positive, prompt_text_negative, json_
     # 构建完整的JSON文件路径
     json_path = os.path.join(OUTPUT_DIR, json_file)
 
-    with open("run1.json", "r", encoding="utf-8") as file_json:
+    with open(json_path, "r", encoding="utf-8") as file_json:
         prompt = json.load(file_json)  #加载到一个名为 prompt 的字典中。  
         
 
