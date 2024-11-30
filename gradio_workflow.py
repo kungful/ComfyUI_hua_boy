@@ -277,7 +277,7 @@ def generate_image(inputimage1,prompt_text_positive, prompt_text_negative, json_
         if latest_image != previous_image:
             print("打印一下旧的图像:", previous_image)
             print("打印一下检测到新的图像:", latest_image)
-            return Image.open(latest_image)
+            return latest_image
 
         time.sleep(3)# 休眠3秒钟
 
@@ -315,8 +315,14 @@ with gr.Blocks() as demo:
     with gr.Row():
         run_button = gr.Button("开始跑图")
     with gr.Row():
-        output_image = gr.Image(type="pil", label="生成的图像", height=512, width=512)
-    
+        output_image = gr.Image(
+            type="filepath",
+            label="生成的图像",
+            height=512,
+            width=512,
+            show_download_button=True,
+            format="png"
+        )    
     # 绑定事件
     refresh_button.click(refresh_json_files, inputs=[], outputs=json_dropdown)
 
